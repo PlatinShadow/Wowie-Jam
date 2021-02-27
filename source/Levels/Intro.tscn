@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Components/Monitor/monitor.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Textures/Main.tres" type="Material" id=2]
+[ext_resource path="res://Textures/Debug/Grid1.tres" type="Material" id=3]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_mode = 2
+background_sky = SubResource( 1 )
+ambient_light_energy = 0.15
+fog_depth_begin = 1.0
+fog_depth_end = 62.4
+fog_height_enabled = true
+fog_height_min = -341.6
+tonemap_mode = 3
+ss_reflections_depth_tolerance = 0.1
+ssao_enabled = true
+dof_blur_far_distance = 2.0
+dof_blur_far_transition = 63.63
+dof_blur_far_amount = 0.09
+glow_enabled = true
+glow_intensity = 0.54
+glow_bicubic_upscale = true
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.99251, 0.122164, 0, -0.122164, 0.99251, 0, 3.74317, 2 )
+
+[node name="monitor" type="MeshInstance" parent="."]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.124, 2.671, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+width = 24.0
+height = 6.0
+depth = 24.0
+material = ExtResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+operation = 2
+width = 22.0
+height = 4.0
+depth = 22.0
+material = ExtResource( 3 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0 )
+width = 0.2
+height = 1.0
+depth = 0.2
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0 )
+width = 0.2
+height = 1.0
+depth = 0.2
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 1 )
+width = 0.2
+height = 1.0
+depth = 0.2
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 1 )
+width = 0.2
+height = 1.0
+depth = 0.2
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01273, 0.396242 )
+width = 4.0
+height = 0.2
+material = ExtResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.17751, -1.17966 )
+light_energy = 0.5
+shadow_enabled = true
+spot_range = 10.4596
+spot_angle = 67.5486

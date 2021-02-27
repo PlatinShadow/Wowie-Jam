@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Textures/Main.tres" type="Material" id=1]
+[ext_resource path="res://Components/Button/Button-1.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Components/Button/Button-0.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Components/Button/Button.gd" type="Script" id=4]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1.4, 0.2, 1.4 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Default"
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Button-0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, -0.122911, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Pressed"
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Button-0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.1, 1, 0, -0.15, 0, 0, 0, 0, 1, 1, 1, 1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 2, 0.149749, 2 )
+
+[node name="Button" type="StaticBody"]
+script = ExtResource( 4 )
+
+[node name="Button-0" type="MeshInstance" parent="."]
+use_in_baked_light = true
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="Button-1" type="MeshInstance" parent="."]
+use_in_baked_light = true
+mesh = ExtResource( 2 )
+material/0 = ExtResource( 1 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16386, 0 )
+light_color = Color( 0.956863, 0.435294, 0.231373, 1 )
+
+[node name="Trigger" type="Area" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape" type="CollisionShape" parent="Trigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Default"
+anims/Default = SubResource( 2 )
+anims/Pressed = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]
+[connection signal="body_exited" from="Trigger" to="." method="_on_Trigger_body_exited"]

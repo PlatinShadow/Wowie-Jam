@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/retardis.obj-41a81c605ff4a66564987f04a11b565f.mesh"
+
+[deps]
+
+files=[ "res://.import/retardis.obj-41a81c605ff4a66564987f04a11b565f.mesh" ]
+
+source_file="res://Components/Door/retardis.obj"
+dest_files=[ "res://.import/retardis.obj-41a81c605ff4a66564987f04a11b565f.mesh", "res://.import/retardis.obj-41a81c605ff4a66564987f04a11b565f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

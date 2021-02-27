@@ -5,3 +5,16 @@
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+ambient_light_energy = 0.3
+fog_depth_begin = 1.0
+fog_height_enabled = true
+fog_height_min = -341.6
+tonemap_mode = 3
+ss_reflections_depth_tolerance = 0.1
+ssao_enabled = true
+dof_blur_far_distance = 20.0
+dof_blur_far_transition = 63.63
+dof_blur_far_amount = 0.09
+glow_enabled = true
+glow_intensity = 0.54
+glow_bicubic_upscale = true
