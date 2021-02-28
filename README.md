@@ -1,4 +1,4 @@
 # Test Chamber Evaluator
 Woowie Game Jam 3.0
 
-![Screen Shot](screenshot.png)
+![Screen Shot](/image.png)
