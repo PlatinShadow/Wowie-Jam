@@ -109,11 +109,11 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
 margin_right = 914.0
-margin_bottom = 829.0
+margin_bottom = 861.0
 
 [node name="Label4" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_right = 914.0
-margin_bottom = 829.0
+margin_bottom = 861.0
 rect_pivot_offset = Vector2( 264.04, 261.205 )
 custom_fonts/font = SubResource( 4 )
 text = "Hello Scientists,
@@ -129,7 +129,8 @@ Subjects have found them self to brick the chambers making them
 impossible to solve
 
 It will be your job to find all ways to break our chambers so
-our testing can continue without any problems!
+our testing can continue without any problems! 
+Basicaly try to get rid of all cubes.
 
 The only qualifactions for this job are that
 you can remember these controls:

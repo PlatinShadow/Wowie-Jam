@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Sign-False.obj-1d287010c6c886a9da6c5e105afba631.mesh"
+
+[deps]
+
+files=[ "res://.import/Sign-False.obj-1d287010c6c886a9da6c5e105afba631.mesh" ]
+
+source_file="res://Textures/Sign/Sign-False.obj"
+dest_files=[ "res://.import/Sign-False.obj-1d287010c6c886a9da6c5e105afba631.mesh", "res://.import/Sign-False.obj-1d287010c6c886a9da6c5e105afba631.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

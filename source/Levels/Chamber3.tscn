@@ -1,3 +1,533 @@
-[gd_scene format=2]
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Components/JumpPad/JumpPad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Components/Cube/Cube.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Textures/Window.tres" type="Material" id=4]
+[ext_resource path="res://Textures/Debug/Grid1.tres" type="Material" id=5]
+[ext_resource path="res://Components/Door/Door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Textures/Glass.tres" type="Material" id=7]
+[ext_resource path="res://Textures/GlowGreen.tres" type="Material" id=8]
+[ext_resource path="res://Textures/GlowRed.tres" type="Material" id=9]
+[ext_resource path="res://Components/LandPad/LandPad.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Textures/Main.tres" type="Material" id=11]
+[ext_resource path="res://Components/Arrow/arrow.obj" type="ArrayMesh" id=12]
+[ext_resource path="res://Levels/Chamber3.gd" type="Script" id=13]
+[ext_resource path="res://GUI/Progress/ProgressUI.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Textures/Particles.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Textures/LightRay.tres" type="Material" id=16]
+[ext_resource path="res://Components/Button/Button.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Textures/Sign/Sign.tscn" type="PackedScene" id=18]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="Environment" id=6]
+background_mode = 1
+background_sky = SubResource( 1 )
+background_sky_orientation = Basis( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07 )
+background_sky_rotation = Vector3( 0, -1.5708, 0 )
+background_sky_rotation_degrees = Vector3( 0, -90, 0 )
+background_energy = 0.3
+ambient_light_color = Color( 0.419608, 0.647059, 0.847059, 1 )
+ambient_light_energy = 0.01
+ambient_light_sky_contribution = 0.0
+fog_enabled = true
+fog_color = Color( 0.988235, 0.517647, 0.137255, 1 )
+fog_depth_enabled = false
+fog_depth_begin = 1.0
+fog_transmit_enabled = true
+fog_height_enabled = true
+fog_height_min = 15.0
+fog_height_max = -50.0
+tonemap_mode = 3
+tonemap_white = 12.26
+ss_reflections_enabled = true
+ss_reflections_depth_tolerance = 0.1
+ssao_enabled = true
+dof_blur_far_distance = 20.0
+dof_blur_far_transition = 63.63
+dof_blur_far_amount = 0.09
+glow_enabled = true
+glow_intensity = 0.22
+glow_strength = 0.72
+glow_bloom = 0.2
+glow_blend_mode = 0
+glow_bicubic_upscale = true
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 37, 6, 18 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 3, 0.1, 3 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.8, 2.7, 1 )
+
+[sub_resource type="GIProbeData" id=7]
+bounds = AABB( -36, -37, -64, 72, 74, 128 )
+cell_size = 0.5
+to_cell_xform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 72, 74, 128 )
+dynamic_data = PoolIntArray( 0, 9, 256, 256, 256, 1, 0, 0, 0, 1094713344, 0, 0, 7, 0, 9, 3456, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[sub_resource type="GIProbeData" id=3]
+bounds = AABB( -35, -42, -17, 70, 84, 34 )
+cell_size = 0.328125
+to_cell_xform = Transform( 3.04762, 0, 0, 0, 3.04762, 0, 0, 0, 3.04762, 106.667, 128, 51.8095 )
+dynamic_data = PoolIntArray( 0, 9, 256, 256, 128, 1, 0, 0, 0, 1094713344, 1094713344, 0, 949742288, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
 
 [node name="Admin" type="Spatial"]
+script = ExtResource( 13 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19, 62 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
+
+[node name="Trigger" type="Node" parent="."]
+
+[node name="IsCubeInPit" type="Area" parent="Trigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -65, 0 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Trigger/IsCubeInPit"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+shape = SubResource( 4 )
+
+[node name="IsPlayerInPit" type="Area" parent="Trigger"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -65, 0 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Trigger/IsPlayerInPit"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+shape = SubResource( 4 )
+
+[node name="Map" type="Node" parent="."]
+
+[node name="Map" type="Node" parent="Map"]
+
+[node name="CSGCombiner" type="CSGCombiner" parent="Map/Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23, 0 )
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -23, 0 )
+width = 70.0
+height = 144.0
+depth = 100.0
+material = ExtResource( 5 )
+
+[node name="CSGBox3" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0 )
+operation = 2
+width = 68.0
+height = 52.0
+depth = 98.0
+material = ExtResource( 5 )
+
+[node name="CSGBox2" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -48, 0 )
+operation = 2
+width = 68.0
+height = 86.2
+depth = 32.0
+material = ExtResource( 5 )
+
+[node name="CSGBox4" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.9, 32 )
+operation = 2
+width = 4.0
+height = 2.2
+depth = 4.0
+
+[node name="CSGBox27" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.9, -37 )
+operation = 2
+width = 4.0
+height = 2.2
+depth = 4.0
+
+[node name="CSGBox28" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, -5.9, -37 )
+operation = 2
+width = 4.0
+height = 2.2
+depth = 4.0
+
+[node name="CSGBox10" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -5.9, 32 )
+operation = 2
+width = 4.0
+height = 2.2
+depth = 4.0
+
+[node name="CSGBox5" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.7, 50 )
+operation = 2
+width = 2.6
+height = 4.6
+depth = 4.0
+material = ExtResource( 5 )
+
+[node name="CSGBox6" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.7, 58 )
+width = 4.0
+height = 6.0
+depth = 16.0
+
+[node name="CSGBox7" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.4, 57.9 )
+operation = 2
+width = 3.8
+height = 5.2
+depth = 16.0
+material = ExtResource( 5 )
+
+[node name="CSGBox8" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 16 )
+width = 67.8
+height = 51.8
+depth = 0.2
+material = ExtResource( 7 )
+
+[node name="CSGBox9" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, -16 )
+width = 67.6
+height = 51.8
+depth = 0.2
+material = ExtResource( 7 )
+
+[node name="CSGBox11" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 16 )
+operation = 2
+width = 8.0
+height = 8.0
+material = ExtResource( 9 )
+
+[node name="CSGBox18" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, -16 )
+operation = 2
+width = 8.0
+height = 8.0
+material = ExtResource( 9 )
+
+[node name="CSGBox20" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 11, -16 )
+operation = 2
+width = 8.0
+height = 8.0
+material = ExtResource( 8 )
+
+[node name="CSGBox22" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 11, 16 )
+operation = 2
+width = 8.0
+height = 8.0
+material = ExtResource( 8 )
+
+[node name="CSGBox12" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 11, 16 )
+operation = 2
+width = 8.0
+height = 8.0
+material = ExtResource( 8 )
+
+[node name="CSGBox17" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 11, -16 )
+operation = 2
+width = 8.0
+height = 8.0
+material = ExtResource( 8 )
+
+[node name="CSGBox13" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -51, 0 )
+width = 6.0
+height = 90.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="CSGBox14" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -77, -8 )
+width = 6.0
+height = 90.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="CSGBox15" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 19, 0 )
+width = 8.0
+height = 0.4
+depth = 10.0
+material = ExtResource( 5 )
+
+[node name="CSGBox16" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -55, 11 )
+width = 6.0
+height = 84.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="CSGBox21" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -62, -10 )
+width = 6.0
+height = 84.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="CSGBox23" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -62, 0 )
+width = 6.0
+height = 84.0
+depth = 6.0
+material = ExtResource( 5 )
+
+[node name="CSGBox19" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -4.9, -37 )
+width = 4.0
+height = 0.2
+depth = 4.0
+material = ExtResource( 5 )
+
+[node name="CSGBox24" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 6, 32 )
+use_in_baked_light = true
+operation = 2
+width = 4.0
+height = 4.0
+depth = 6.0
+
+[node name="CSGBox25" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.2, -2.5, 32.1 )
+operation = 2
+width = 4.0
+height = 4.4
+depth = 2.8
+material = ExtResource( 5 )
+
+[node name="CSGBox26" type="CSGBox" parent="Map/Map/CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -36, -4, 32 )
+height = 12.0
+depth = 8.0
+
+[node name="CSGBox25" type="CSGBox" parent="Map/Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 29, 32 )
+height = 4.0
+depth = 6.0
+material = ExtResource( 4 )
+
+[node name="Cube" parent="Map/Map" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.7, 43.3, -3.5 )
+
+[node name="Cube3" parent="Map/Map" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 19.1, -43 )
+
+[node name="Cube4" parent="Map/Map" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 19.1, -37.8 )
+
+[node name="Cube5" parent="Map/Map" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 21.2, -42 )
+
+[node name="Cube2" parent="Map/Map" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 20, 23 )
+
+[node name="arrow" type="MeshInstance" parent="Map/Map"]
+transform = Transform( -4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 34, 44, 7.4 )
+mesh = ExtResource( 12 )
+material/0 = ExtResource( 11 )
+
+[node name="LandPad" parent="Map/Map" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 42.2, 0 )
+
+[node name="LandPad2" parent="Map/Map" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19, 18.2, -37 )
+
+[node name="LandPad3" parent="Map/Map" instance=ExtResource( 10 )]
+transform = Transform( 1, -4.37114e-08, 0, 0, 1.91069e-15, 1, -4.37114e-08, -1, 1.91069e-15, 0, 36.2, 49 )
+
+[node name="JumpPad" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 16.3, 32 )
+Impluse = Vector3( 0, 25, -15 )
+
+[node name="JumpPad6" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.3, -37 )
+Impluse = Vector3( 0, 25, 18 )
+
+[node name="JumpPad8" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 16.3, -37 )
+Impluse = Vector3( 0, 25, 18 )
+
+[node name="JumpPad2" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.3, 32 )
+Impluse = Vector3( 0, 25, -15 )
+
+[node name="JumpPad3" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23, -10.7, -8 )
+Impluse = Vector3( -20, 40, 4 )
+
+[node name="JumpPad4" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 15.3, 0 )
+Impluse = Vector3( 24, 38, 0 )
+
+[node name="Area" type="Area" parent="Map/Map/JumpPad4"]
+collision_layer = 0
+collision_mask = 2147483654
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/Map/JumpPad4/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0 )
+shape = SubResource( 5 )
+
+[node name="JumpPad5" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 8.3, 11 )
+Impluse = Vector3( -5, 32, -20 )
+
+[node name="JumpPad7" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1.3, -10 )
+Impluse = Vector3( -18, 20, 5 )
+
+[node name="JumpPad9" parent="Map/Map" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0 )
+Impluse = Vector3( 0, 45, 20 )
+
+[node name="Door_Entrance" parent="Map/Map" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, 49.5 )
+
+[node name="Trigger_Open" type="Area" parent="Map/Map/Door_Entrance"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/Map/Door_Entrance/Trigger_Open"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 2 )
+shape = SubResource( 2 )
+
+[node name="Trigger_Close" type="Area" parent="Map/Map/Door_Entrance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="Map/Map/Door_Entrance/Trigger_Close"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 2 )
+shape = SubResource( 2 )
+
+[node name="Door_Exit" parent="Map/Map" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -34.6, 18, 32.1 )
+
+[node name="CSGPolygon" type="CSGPolygon" parent="Map/Map"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 6.49, 33, 27, 35 )
+polygon = PoolVector2Array( -8, -9, -12, -9, 2, 4, 1, 0 )
+material = ExtResource( 16 )
+
+[node name="Buttons" type="Node" parent="Map"]
+
+[node name="Button" parent="Map/Buttons" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 18, 45 )
+
+[node name="Button2" parent="Map/Buttons" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 18, 40 )
+
+[node name="Sign" parent="Map/Buttons" instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -33.9, 22.7, 36 )
+
+[node name="Sign2" parent="Map/Buttons" instance=ExtResource( 18 )]
+transform = Transform( -4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -33.9, 22.7, 35 )
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="OmniLight" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, 0 )
+omni_range = 53.0
+
+[node name="Particles" parent="Lights" instance=ExtResource( 15 )]
+transform = Transform( -1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 33, 27, 32 )
+
+[node name="GIProbe" type="GIProbe" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37, 3 )
+subdiv = 2
+extents = Vector3( 36, 37, 64 )
+data = SubResource( 7 )
+
+[node name="GIProbe2" type="GIProbe" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -41, 0 )
+subdiv = 2
+extents = Vector3( 35, 42, 17 )
+data = SubResource( 3 )
+
+[node name="SpotLight" type="SpotLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 19, -13, 0 )
+light_color = Color( 0.929412, 0.690196, 0.227451, 1 )
+light_energy = 4.0
+light_indirect_energy = 4.0
+light_bake_mode = 2
+shadow_enabled = true
+spot_range = 95.0
+
+[node name="SpotLight2" type="SpotLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -16, -13, 0 )
+light_color = Color( 0.929412, 0.690196, 0.227451, 1 )
+light_energy = 4.0
+light_indirect_energy = 4.0
+light_bake_mode = 2
+shadow_enabled = true
+spot_range = 95.0
+
+[node name="OmniLight2" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 48 )
+light_color = Color( 0.831373, 1, 1, 1 )
+light_bake_mode = 2
+omni_range = 10.0
+
+[node name="OmniLight3" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 51 )
+light_color = Color( 0.831373, 1, 1, 1 )
+light_bake_mode = 2
+omni_range = 10.0
+
+[node name="OmniLight4" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 48, 1 )
+light_color = Color( 0.831373, 1, 1, 1 )
+light_bake_mode = 2
+omni_range = 10.0
+
+[node name="OmniLight9" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 21, 32 )
+light_color = Color( 0.831373, 1, 1, 1 )
+light_bake_mode = 2
+omni_range = 10.0
+
+[node name="OmniLight5" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 37, -29 )
+light_color = Color( 0.831373, 1, 1, 1 )
+light_energy = 0.36
+light_bake_mode = 2
+omni_range = 41.0
+
+[node name="OmniLight7" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 37, 34 )
+light_color = Color( 0.831373, 1, 1, 1 )
+light_energy = 0.36
+light_bake_mode = 2
+omni_range = 41.0
+
+[node name="ProgressUI" parent="." instance=ExtResource( 14 )]
+[connection signal="body_entered" from="Trigger/IsCubeInPit" to="." method="_on_IsCubeInPit_body_entered"]
+[connection signal="body_entered" from="Trigger/IsPlayerInPit" to="." method="_on_IsPlayerInPit_body_entered"]
+[connection signal="body_entered" from="Map/Map/JumpPad4/Area" to="Map/Map/JumpPad4" method="_on_Trigger_body_entered"]
+[connection signal="body_entered" from="Map/Map/Door_Entrance/Trigger_Open" to="Map/Map/Door_Entrance" method="Open"]
+[connection signal="body_entered" from="Map/Map/Door_Entrance/Trigger_Close" to="Map/Map/Door_Entrance" method="Close" flags=6]
+[connection signal="button_pressed" from="Map/Buttons/Button" to="Map/Buttons/Sign" method="Enable"]
+[connection signal="button_pressed" from="Map/Buttons/Button" to="." method="UpdateDoor"]
+[connection signal="button_released" from="Map/Buttons/Button" to="Map/Buttons/Sign" method="Disable"]
+[connection signal="button_released" from="Map/Buttons/Button" to="." method="UpdateDoor"]
+[connection signal="button_pressed" from="Map/Buttons/Button2" to="Map/Buttons/Sign2" method="Enable"]
+[connection signal="button_pressed" from="Map/Buttons/Button2" to="." method="UpdateDoor"]
+[connection signal="button_released" from="Map/Buttons/Button2" to="Map/Buttons/Sign2" method="Disable"]
+[connection signal="button_released" from="Map/Buttons/Button2" to="." method="UpdateDoor"]

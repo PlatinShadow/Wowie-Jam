@@ -10,7 +10,7 @@ height = 1.8
 extents = Vector3( 0.2, 0.1, 0.2 )
 
 [node name="Player" type="KinematicBody"]
-collision_layer = 1025
+collision_layer = 2
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -26,11 +26,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 
 [node name="Camera" type="Camera" parent="RotationHelper"]
 fov = 90.0
+far = 200.0
 
 [node name="RayCast" type="RayCast" parent="RotationHelper/Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -5 )
-collision_mask = 16
+collision_mask = 4
+
+[node name="RayCast-Clip" type="RayCast" parent="RotationHelper/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -5 )
 
 [node name="Hand" type="Spatial" parent="RotationHelper"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -3.52704 )

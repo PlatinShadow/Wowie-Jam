@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/jump-pad-0.obj-8127538f8cfa5d5df529f03a283f99b6.mesh"
+
+[deps]
+
+files=[ "res://.import/jump-pad-0.obj-8127538f8cfa5d5df529f03a283f99b6.mesh" ]
+
+source_file="res://Components/JumpPad/jump-pad-0.obj"
+dest_files=[ "res://.import/jump-pad-0.obj-8127538f8cfa5d5df529f03a283f99b6.mesh", "res://.import/jump-pad-0.obj-8127538f8cfa5d5df529f03a283f99b6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

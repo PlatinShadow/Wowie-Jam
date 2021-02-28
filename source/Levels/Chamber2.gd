@@ -17,6 +17,7 @@ func _ready():
 	ui.SetProgress("0")
 	ui.SetNumber("2")
 	ui.SetTotal("2")
+	ui.SetHint("The Pit")
 	ui.PlayTitle()
 
 func UpdateDoor():

@@ -3,33 +3,24 @@
 [sub_resource type="ProceduralSky" id=1]
 
 [resource]
+background_mode = 2
 background_sky = SubResource( 1 )
 background_sky_orientation = Basis( -0.0630171, 0, 0.998012, 0, 1, 0, -0.998012, 0, -0.0630171 )
-background_sky_rotation = Vector3( 0, 1.63386, 0 )
-background_sky_rotation_degrees = Vector3( 0, 93.613, 0 )
 background_energy = 0.3
-ambient_light_color = Color( 0.419608, 0.647059, 0.847059, 1 )
+ambient_light_color = Color( 0.458824, 0.466667, 0.501961, 1 )
 ambient_light_energy = 0.3
 ambient_light_sky_contribution = 0.0
-fog_enabled = true
-fog_color = Color( 0.988235, 0.517647, 0.137255, 1 )
-fog_depth_enabled = false
 fog_depth_begin = 1.0
-fog_transmit_enabled = true
 fog_height_enabled = true
-fog_height_min = 15.0
-fog_height_max = -50.0
+fog_height_min = -341.6
 tonemap_mode = 3
-tonemap_white = 12.26
-ss_reflections_enabled = true
+tonemap_exposure = 0.8
+tonemap_white = 12.76
 ss_reflections_depth_tolerance = 0.1
 ssao_enabled = true
 dof_blur_far_distance = 20.0
 dof_blur_far_transition = 63.63
 dof_blur_far_amount = 0.09
 glow_enabled = true
-glow_intensity = 0.22
-glow_strength = 0.72
-glow_bloom = 0.2
-glow_blend_mode = 0
+glow_intensity = 0.54
 glow_bicubic_upscale = true

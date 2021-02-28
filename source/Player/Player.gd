@@ -2,7 +2,7 @@ extends KinematicBody
 
 const GRAVITY = -24.8
 const MAX_SPEED = 10
-const JUMP_SPEED = 10
+const JUMP_SPEED = 12
 const ACCEL = 2.5
 const FRICTION = 16
 
@@ -11,10 +11,13 @@ const SENS = 0.05
 var dir = Vector3.ZERO
 var vel = Vector3.ZERO
 
+var isFlying = false
+
 onready var camera 			= $RotationHelper/Camera
 onready var rotation_helper = $RotationHelper
 onready var raycast 		= $RotationHelper/Camera/RayCast
 onready var hand 			= $RotationHelper/Hand
+onready var clip_cast		= $"RotationHelper/Camera/RayCast-Clip"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -27,7 +30,7 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		process_mouse(event)
 	if event is InputEventKey and event.is_action_pressed("interact"):
-		pickup_object()
+		handle_object()
 	if event is InputEventKey and event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event is InputEventMouseButton and event.is_pressed():
@@ -37,28 +40,33 @@ func _input(event):
 func yeet_object():
 	if hand.get_child_count() > 0:
 		var object = hand.get_child(0)
-		hand.remove_child(object)
-		get_tree().root.get_child(0).add_child(object)
-		object.mode = RigidBody.MODE_RIGID
-		object.set_translation(hand.global_transform.origin)
-		object.set_rotation(Vector3(rotation_helper.rotation.x, self.rotation.y, self.rotation.z))
-		object.apply_central_impulse(camera.global_transform.basis.z * -150)
+		drop_object(object)
+		object.apply_central_impulse(camera.global_transform.basis.z * -40)
 		
-func pickup_object():
+func drop_object(object):
+	if clip_cast.is_colliding():
+		return
+	hand.remove_child(object)
+	get_tree().root.get_child(0).add_child(object)
+	object.mode = RigidBody.MODE_RIGID
+	object.linear_velocity = vel;
+	object.set_translation(hand.global_transform.origin)
+	object.set_rotation(Vector3(rotation_helper.rotation.x, self.rotation.y, self.rotation.z))
+	
+func pickup_object(object):
+	object.get_parent().remove_child(object)
+	hand.add_child(object)
+	object.mode = RigidBody.MODE_KINEMATIC
+	object.set_rotation(Vector3.ZERO)
+	object.set_translation(Vector3(0,0,0))
+	
+func handle_object():
 	if raycast.is_colliding():
 		var object = raycast.get_collider()
 		if hand.get_child_count() > 0:
-			hand.remove_child(object)
-			get_tree().root.get_child(0).add_child(object)
-			object.mode = RigidBody.MODE_RIGID
-			object.set_translation(hand.global_transform.origin)
-			object.set_rotation(Vector3(rotation_helper.rotation.x, self.rotation.y, self.rotation.z))
+			drop_object(object)
 		else:
-			object.get_parent().remove_child(object)
-			hand.add_child(object)
-			object.mode = RigidBody.MODE_KINEMATIC
-			object.set_rotation(Vector3.ZERO)
-			object.set_translation(Vector3(0,0,0))
+			pickup_object(object)
 
 func process_mouse(event):
 		rotation_helper.rotate_x(deg2rad(event.relative.y * SENS * -1))
@@ -107,6 +115,8 @@ func process_movement(delta):
 	
 	hvel = hvel.linear_interpolate(target, accel * delta)
 
-	vel.x = hvel.x
-	vel.z = hvel.z
-	vel = move_and_slide(vel, Vector3(0,1,0),0.05,4, deg2rad(40))
+	if isFlying == false:
+		vel.x = hvel.x
+		vel.z = hvel.z
+
+	vel = move_and_slide(vel, Vector3(0,1,0), 0.05, 4, deg2rad(40), false)

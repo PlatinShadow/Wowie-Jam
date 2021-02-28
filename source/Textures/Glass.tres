@@ -7,5 +7,5 @@ metallic = 0.71
 metallic_specular = 0.45
 roughness = 0.03
 refraction_enabled = true
-refraction_scale = -0.02
+refraction_scale = 0.0
 refraction_texture_channel = 0

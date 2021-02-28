@@ -87,7 +87,7 @@ material = ExtResource( 3 )
 environment = SubResource( 2 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.17751, -1.17966 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5.17751, 0.0189883 )
 light_energy = 0.5
 shadow_enabled = true
 spot_range = 10.4596
