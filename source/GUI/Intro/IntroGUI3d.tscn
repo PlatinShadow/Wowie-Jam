@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://GUI/Intro/IntroGUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GUI/Intro/IntroGUI3d.gd" type="Script" id=2]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_albedo_tex_force_srgb = true
+albedo_texture = SubResource( 2 )
+
+[sub_resource type="QuadMesh" id=4]
+size = Vector2( 1.6, 1.15 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.8, 0.575, 0.016 )
+
+[node name="GUI3D" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1080, 720 )
+hdr = false
+usage = 0
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="Control" parent="Viewport" instance=ExtResource( 1 )]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4, 3.6, 0 )
+visible = false
+double_sided = false
+texture = SubResource( 1 )
+
+[node name="Quad" type="MeshInstance" parent="."]
+material_override = SubResource( 3 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Area" type="Area" parent="Quad"]
+input_capture_on_drag = true
+
+[node name="CollisionShape" type="CollisionShape" parent="Quad/Area"]
+shape = SubResource( 5 )

@@ -1,0 +1,166 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://GUI/Intro/IntroGui.gd" type="Script" id=1]
+[ext_resource path="res://GUI/comfortaa-v30-latin-regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 63
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
+font_data = ExtResource( 2 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 56.0
+margin_bottom = 120.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 32.6713 ]
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 31.8116
+margin_top = 28.554
+margin_right = 837.812
+margin_bottom = 99.554
+custom_fonts/font = SubResource( 1 )
+text = "Test Chamber Evaluator"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_left = 37.3315
+margin_top = 90.3004
+margin_right = 843.332
+margin_bottom = 161.3
+rect_pivot_offset = Vector2( 264.04, 261.205 )
+custom_fonts/font = SubResource( 2 )
+text = "WE ARE HIRING"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Panel"]
+margin_left = 35.3315
+margin_top = 655.072
+margin_right = 841.332
+margin_bottom = 726.072
+rect_pivot_offset = Vector2( 264.04, 261.205 )
+custom_fonts/font = SubResource( 3 )
+text = "Shutter Inovations Ltd."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Panel"]
+modulate = Color( 0.403922, 0.847059, 0.27451, 1 )
+margin_left = 32.2074
+margin_top = 580.395
+margin_right = 345.796
+margin_bottom = 629.819
+rect_pivot_offset = Vector2( 177.279, 24.7116 )
+text = "Accept"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="Panel"]
+modulate = Color( 0.92549, 0.192157, 0.192157, 1 )
+margin_left = 368.566
+margin_top = 580.395
+margin_right = 682.154
+margin_bottom = 629.819
+rect_pivot_offset = Vector2( 177.279, 24.7116 )
+text = "Reject"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+margin_left = 37.2528
+margin_top = 152.379
+margin_right = 977.253
+margin_bottom = 552.379
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+margin_right = 914.0
+margin_bottom = 829.0
+
+[node name="Label4" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_right = 914.0
+margin_bottom = 829.0
+rect_pivot_offset = Vector2( 264.04, 261.205 )
+custom_fonts/font = SubResource( 4 )
+text = "Hello Scientists,
+at Shutter Inovations Ltd. we are always working hard to create
+new amazing inovations!
+
+But those inovations need intense testing. Thus we created lots of 
+Testchambers where our subjects will thoroughly evaluate
+our new products.
+
+Sometimes our designers fail to create fail-safe Testchambers though. 
+Subjects have found them self to brick the chambers making them 
+impossible to solve
+
+It will be your job to find all ways to break our chambers so
+our testing can continue without any problems!
+
+The only qualifactions for this job are that
+you can remember these controls:
+- Use \"E\" to interact / pickup objects
+- Use \"Mouse 1\" to throw objects
+- Use \"Tab\" to see your progress
+
+
+Keep On Inovating
+
+Yours truly,
+Cavern Johnson"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupDialog" type="PopupDialog" parent="Panel"]
+anchor_right = 0.208
+margin_left = 396.27
+margin_top = 640.881
+margin_right = 436.27
+margin_bottom = 680.881
+
+[node name="Label" type="Label" parent="Panel/PopupDialog"]
+margin_left = 32.1941
+margin_top = 13.0814
+margin_right = 228.194
+margin_bottom = 27.0814
+text = "You really do need the job tho!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Panel/Button" to="." method="_on_Button_Accept"]
+[connection signal="pressed" from="Panel/Button2" to="." method="_on_Button2_Reject"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/song-short.wav-d014b0b33da6be54e5f57cbba8878da2.sample"
+
+[deps]
+
+source_file="res://Sounds/song-short.wav"
+dest_files=[ "res://.import/song-short.wav-d014b0b33da6be54e5f57cbba8878da2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

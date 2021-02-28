@@ -2,7 +2,7 @@ extends KinematicBody
 
 const GRAVITY = -24.8
 const MAX_SPEED = 10
-const JUMP_SPEED = 18
+const JUMP_SPEED = 10
 const ACCEL = 2.5
 const FRICTION = 16
 
@@ -17,7 +17,6 @@ onready var raycast 		= $RotationHelper/Camera/RayCast
 onready var hand 			= $RotationHelper/Hand
 
 func _ready():
-	print("test")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
@@ -33,6 +32,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event is InputEventMouseButton and event.is_pressed():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 		
 func yeet_object():
 	if hand.get_child_count() > 0:
@@ -83,7 +83,9 @@ func process_input(delta):
 	
 	if Input.is_action_pressed("fire1"):
 		yeet_object()
-
+	
+	if is_on_floor() and Input.is_action_pressed("move_jump"):
+		vel.y = JUMP_SPEED
 	
 func process_movement(delta):
 	dir.y = 0

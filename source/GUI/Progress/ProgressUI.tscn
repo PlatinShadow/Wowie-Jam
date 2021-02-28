@@ -1,0 +1,253 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/comfortaasdf.tres" type="BitmapFont" id=1]
+[ext_resource path="res://GUI/Progress/ProgressUI.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/song-short.wav" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade"
+length = 5.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Chamber Title:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Chamber Title:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Chamber Title:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Chamber Title:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2.5, 3, 5 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Hint:modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Hint:modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Hint:modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray(  ),
+"times": PoolRealArray(  )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Hint:modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2.5, 3, 5 )
+}
+
+[node name="ProgressUI" type="Control"]
+modulate = Color( 1, 1, 1, 0.537255 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -40.0
+
+[node name="Chamber Title" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.655042 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -384.0
+margin_top = -100.0
+margin_right = -206.0
+margin_bottom = -63.0
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = ExtResource( 1 )
+text = "Chamber 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hint" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.655042 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -312.0
+margin_top = 20.0
+margin_right = 281.0
+margin_bottom = 57.0
+custom_fonts/font = ExtResource( 1 )
+text = "Hint: Press Tab to see your Progress"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Done Message" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -408.0
+margin_top = -244.0
+margin_right = -11.0
+margin_bottom = -207.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Next Level Starts Soon..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -344.0
+margin_top = -408.0
+margin_right = -304.0
+margin_bottom = -368.0
+rect_scale = Vector2( 7.96, 9.56 )
+
+[node name="Title" type="Label" parent="Panel"]
+margin_left = 2.01004
+margin_top = 1.67365
+margin_right = 159.01
+margin_bottom = 38.6736
+rect_scale = Vector2( 0.15, 0.15 )
+custom_fonts/font = ExtResource( 1 )
+text = "Chamber"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Done" type="Label" parent="Panel"]
+visible = false
+margin_left = 7.03519
+margin_top = 20.0837
+margin_right = 181.035
+margin_bottom = 57.0837
+rect_scale = Vector2( 0.15, 0.15 )
+custom_fonts/font = ExtResource( 1 )
+text = "Good Job!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="Panel"]
+margin_left = 28.1407
+margin_top = 1.67365
+margin_right = 40.1407
+margin_bottom = 38.6736
+rect_scale = Vector2( 0.15, 0.15 )
+custom_fonts/font = ExtResource( 1 )
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="Panel"]
+margin_left = 2.01013
+margin_top = 6.69455
+margin_right = 473.01
+margin_bottom = 43.6945
+rect_scale = Vector2( 0.05, 0.05 )
+custom_fonts/font = ExtResource( 1 )
+text = "TEST CHAMBER EVALUATOR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title4" type="Label" parent="Panel"]
+margin_left = 2.01013
+margin_top = 32.636
+margin_right = 545.01
+margin_bottom = 149.636
+rect_scale = Vector2( 0.05, 0.05 )
+custom_fonts/font = ExtResource( 1 )
+text = "Try to find all the ways
+to make the chamber impossible
+to escapse / solve."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title3" type="Label" parent="Panel"]
+margin_left = 2.01001
+margin_top = 10.8787
+margin_right = 154.01
+margin_bottom = 47.8787
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Cubes:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progress" type="Label" parent="Panel"]
+margin_left = 14.0704
+margin_top = 10.8787
+margin_right = 59.0704
+margin_bottom = 47.8787
+rect_scale = Vector2( 0.1, 0.1 )
+custom_fonts/font = ExtResource( 1 )
+text = "0/1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 1 )

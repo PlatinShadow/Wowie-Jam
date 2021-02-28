@@ -1,11 +1,18 @@
 extends Node
 
-onready var anim = $AnimationPlayer
+onready var tween = $Tween
+onready var door = $StaticBody
+
+var isOpen = false
 
 func Open(body = null):
 	print("Door Opening")
-	anim.play("Open")
+	tween.interpolate_property(door, "translation", door.translation, Vector3(0,4.5,0), 2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.start()
+	isOpen = true
 	
 func Close(body = null):
 	print("Door Closing")
-	anim.play("Close")
+	tween.interpolate_property(door, "translation", door.translation, Vector3(0,0,0), 2, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.start()
+	isOpen = false

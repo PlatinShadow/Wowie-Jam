@@ -49,8 +49,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16386, 0 )
 light_color = Color( 0.956863, 0.435294, 0.231373, 1 )
 
 [node name="Trigger" type="Area" parent="."]
-collision_layer = 1024
-collision_mask = 1024
+collision_layer = 1040
+collision_mask = 1040
 
 [node name="CollisionShape" type="CollisionShape" parent="Trigger"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0 )

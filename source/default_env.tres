@@ -5,11 +5,17 @@
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+background_sky_orientation = Basis( -0.0630171, 0, 0.998012, 0, 1, 0, -0.998012, 0, -0.0630171 )
+background_energy = 0.3
+ambient_light_color = Color( 0.458824, 0.466667, 0.501961, 1 )
 ambient_light_energy = 0.3
+ambient_light_sky_contribution = 0.0
 fog_depth_begin = 1.0
 fog_height_enabled = true
 fog_height_min = -341.6
 tonemap_mode = 3
+tonemap_exposure = 0.8
+tonemap_white = 12.76
 ss_reflections_depth_tolerance = 0.1
 ssao_enabled = true
 dof_blur_far_distance = 20.0
